@@ -3,6 +3,8 @@ require('dotenv').config()
 
 //express app
 const app = express()
+const workoutRouters = require('./route/workouts');
+const mongoose = require('mongoose');
 
 //middleware
 app.use((req,res, next) => {
@@ -12,13 +14,26 @@ app.use((req,res, next) => {
 })
 
 //routes
-app.get('/', (req, res) => {
-    res.json({mssg : 'welcome to the app'})
-})
+// app.get('/', (req, res) => {
+//     res.json({mssg : 'welcome to the app'})
+// })
 
-//listen for request
-app.listen(process.env.PORT, () => {
-    console.log("Listening on port 4000!!");
-})
+app.use('/api/workouts', workoutRouters)
+
+//connect to db
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        //listen for request
+        app.listen(process.env.PORT, () => {
+            console.log("Listening on port 8000!!");
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+
+
+
 
 
