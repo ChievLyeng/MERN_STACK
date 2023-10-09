@@ -7,6 +7,8 @@ const workoutRouters = require('./route/workouts');
 const mongoose = require('mongoose');
 
 //middleware
+app.use(express.json())
+
 app.use((req,res, next) => {
     console.log(req.path, req.method);
     console.log(Date.now());
@@ -25,7 +27,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         //listen for request
         app.listen(process.env.PORT, () => {
-            console.log("Listening on port 8000!!");
+            console.log("Listening on port 8000!!",process.env.PORT);
         })
     })
     .catch((error) => {
