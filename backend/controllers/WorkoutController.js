@@ -30,6 +30,17 @@ const getWorkout = async (req,res) => {
 //create new workout
 const createWorkout = async (req,res) => {
     const {title,load,reps} = req.body
+    const emptyFields = []
+
+    if(!title){
+        emptyFields.push('title')
+    }
+    if(!load){
+        emptyFields.push('load')
+    }
+    if(!reps){
+        emptyFields.push('reps')
+    }
 
     //add doc to db 
     try{

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 
 export const WorkoutForm = () => {
+    const {dispatch} = useWorkoutsContext()
     const [title,setTitle] = useState("");
     const [load,setLoad] = useState("");
     const [reps,setReps] = useState("");
@@ -37,6 +39,7 @@ export const WorkoutForm = () => {
                 setReps('');
                 setError(null);
                 console.log('New workout added', response.data);
+                dispatch({type: 'CREATE_WORKOUT', payload: json})
             }
         } catch (error) {
             setError('An error occurred while adding the workout');
