@@ -16,14 +16,14 @@ export const Home = () => {
 
         axios.get(`${URL}/api/workouts`).then((res) => {
             // setWorkouts(res.data);
-            dispatch({type:'SET_WORKOUTS', payload: json})
+            dispatch({type:'SET_WORKOUTS', payload: res.data})
         })
 
     }
 
     useEffect(()=> {
         getWorkout();
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="home">
@@ -31,8 +31,6 @@ export const Home = () => {
                 {workouts && workouts.map(workout => (
                 <WorkoutDetail workout={workout} key={workout._id} />
                 ))}
-
-                
             </div>
             <WorkoutForm />
         </div>

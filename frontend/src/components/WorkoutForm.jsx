@@ -8,6 +8,7 @@ export const WorkoutForm = () => {
     const [load,setLoad] = useState("");
     const [reps,setReps] = useState("");
     const [error,setError] = useState(null);
+    const [emptyFields,setEmptyFields] = useState([])
 
     const handleChange_Title = (e) => {
         setTitle(e.target.value)
@@ -32,17 +33,27 @@ export const WorkoutForm = () => {
                     'Content-Type': 'application/json',
                 },
             });
-    
+
+            const json = await response.data
+            console.log(json.error)
+            console.log(json.data)
+
+            if (response.status !== 200) {
+                setError(json.error)
+                setEmptyFields(json.emptyFields)
+                console.log("error")
+            }
+
             if (response.status === 200) {
                 setTitle('');
                 setLoad('');
                 setReps('');
                 setError(null);
+                setEmptyFields([]);
                 console.log('New workout added', response.data);
                 dispatch({type: 'CREATE_WORKOUT', payload: json})
             }
         } catch (error) {
-            setError('An error occurred while adding the workout');
             console.error('Error:', error);
         }
     };
@@ -53,13 +64,28 @@ export const WorkoutForm = () => {
             <h3>Add a New Workout</h3>
 
             <label > Exercize Title</label>
-            <input type="text" value={title} onChange={handleChange_Title} />
+            <input 
+                type="text" 
+                value={title}
+                onChange={handleChange_Title}
+                className={emptyFields.includes('title')?  'error' : ''}
+             />
 
             <label > Load (Kg) </label>
-            <input type="number" value={load} onChange={handleChange_Load} />
+            <input 
+                type="number"
+                value={load} 
+                onChange={handleChange_Load} 
+                className={emptyFields.includes('load') ? 'error' : ''}
+             />
 
             <label > Reps </label>
-            <input type="number" value={reps} onChange={handleChange_Reps} />
+            <input 
+                type="number" 
+                value={reps} 
+                onChange={handleChange_Reps} 
+                className={emptyFields.includes('reps') ? 'error' : ''}
+            />
 
             <button>Add Workout</button>
             {error &&  <div className="error">{error}</div> }

@@ -12,9 +12,10 @@ export const workoutsReducer = (state, action) => {
             return {
                 workouts : [action.payload, ...state.workouts]
             }
-        case 'DELETE_WORKOUT' :
+       
+        case 'DELETE_WORKOUT':
             return {
-                workouts: state.workouts.filter((w) => w.id !== action.payload._id)
+                workouts: state.workouts.filter((w) => w._id !== action.payload._id)
             }
 
         default :
@@ -24,7 +25,7 @@ export const workoutsReducer = (state, action) => {
 
 export const WorkoutsContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(workoutsReducer,{
-        workouts: nulll
+        workouts: null,
     })
 
     return (
