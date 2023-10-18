@@ -27,6 +27,7 @@ export const WorkoutDetail = ({workout}) => {
           
           {/* this convert the createdAt to the past date time till now */}
           <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+          {/* <p> {workout.createdAt} </p> */}
 
           <span onClick={handleClick}>Delete</span>
         </div>
