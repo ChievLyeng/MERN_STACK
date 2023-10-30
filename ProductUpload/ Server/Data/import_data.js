@@ -18,12 +18,12 @@ mongoose.connect(process.env.DB,{
   })
   
   // read json file
-  const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours-simple.json`,'utf-8'));
+  const products = JSON.parse(fs.readFileSync(`${__dirname}/data.json`,'utf-8'));
   
   //import data into db
   const importData = async () => {
     try{
-        await Tour.create(tours);
+        await Product.create(products);
         console.log("Data successfully loaded!");
     }catch(err){
       console.log(err)
@@ -33,7 +33,7 @@ mongoose.connect(process.env.DB,{
   // delete all data from collection
   const deleteData = async () => {
     try{
-      await Tour.deleteMany();
+      await Product.deleteMany();
       console.log("Data successfully Deleted!");
     }catch(err){
       console.log(err)
@@ -48,7 +48,7 @@ mongoose.connect(process.env.DB,{
     deleteData();
   }
   
-  // node dev-data/data/import-dev-data.js
-  // node dev-data/data/import-dev-data.js --import
-  // node dev-data/data/import-dev-data.js --delete
+  // node Data/import_data.js
+  // node Data/import_data.js --import
+  // node Data/import_data.js --delete
   console.log(process.argv);

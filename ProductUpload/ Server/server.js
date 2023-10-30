@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const ProductRoutes = require('./Route/ProductsRoute')
+const OrderRoutes = require('./Route/OrderRoute')
 
 require('dotenv').config()
 
@@ -17,17 +18,17 @@ app.use(cors());
 //     res.json({mssg: "Welcome to post product page"})
 // })
 //route
-app.use('/products',ProductRoutes)
+app.use('/',ProductRoutes)
+app.use('/',OrderRoutes)
 
 // connect db
-mongoose.connect(process.env.DB)
-.then(() => {
-    console.log("Database is connected!");
-    //listen for request
-    app.listen(process.env.PORT, () => {
-        console.log("Server is running on Port",process.env.PORT,"!!!");
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("Database is connected!");
+        app.listen(process.env.PORT, () => {
+            console.log("Server is running on Port", process.env.PORT, "!!!");
+        });
     })
-})
-.catch((err) => {
-    console.log(err);
-})
+    .catch((err) => {
+        console.error("Error connecting to the database:", err);
+    });
