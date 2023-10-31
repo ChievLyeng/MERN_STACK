@@ -33,18 +33,17 @@ const getProduct = async ( req, res) =>{
 // 2) second method
 const createProduct = async (req, res) => {
     const productData = req.body; // Get product data from the request body
-    // console.log(productData.p_Name)
-    // console.log(productData)
+
 
     try {
         // Validate the product data against the schema (you can customize this validation)
-        const isValid = validateProductData(productData);
+        // const isValid = validateProductData(productData);
         
-        if (!isValid) {
-            // Return an error response
-            res.status(400).json({ error: "Invalid product data" });
-            return;
-        }
+        // if (!isValid) {
+        //     // Return an error response
+        //     res.status(400).json({ error: "Invalid product data" });
+        //     return;
+        // }
 
         // If the data is valid, create the product
         const product = await Product.create(productData);

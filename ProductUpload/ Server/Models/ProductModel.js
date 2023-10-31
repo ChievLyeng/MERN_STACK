@@ -14,12 +14,9 @@ const productSchema = mongoose.Schema({
         type: Number,
         required: [true,"Product must have price"]
     },
-    // Unit_Price: {
-    //     type: Number
-    // },
-    // Unit_Wieght: {
-    //     type: Number
-    // },
+    Image:{
+        type: String
+    },
     Quantity: {
         type: Number,
         required: [true,'Producte must have quantity']

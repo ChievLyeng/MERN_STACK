@@ -33,11 +33,13 @@ app.post('/upload',upload.single('file'),(req,res) => {
     .catch((err) => console.log(err))
 })
 
-app.get('/getImage',(req,res) => {
-    UserModel.find()
-    .then((users => res.json(users)))
-    .catch((err) => res.json(err))
-})
+const getImage = async (req,res) => {
+    const image = await UserModel.find()
+    res.status(200).json(image)
+    // console.log(image)
+}
+
+app.get('/getImage',getImage)
 
 
 app.listen(3001,() => {

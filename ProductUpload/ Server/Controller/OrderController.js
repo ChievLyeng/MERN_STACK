@@ -10,7 +10,6 @@ const getOrders = async (req, res) => {
         console.log(error);
         res.status(500).json({ error: 'Failed to retrieve orders' });
     }
-
 }
 
 // create order

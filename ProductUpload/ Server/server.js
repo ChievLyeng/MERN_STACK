@@ -12,6 +12,7 @@ const app = express()
 //middleware
 app.use(express.json()); // use to parse the jason data from request
 app.use(cors());
+app.use(express.static('public'));
 
 
 // app.get('/product', (req,res) => {

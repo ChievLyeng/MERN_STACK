@@ -10,7 +10,15 @@ const OrderProduct = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref : 'Products'
         }
-    ]
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    UpdatedAt: {
+        type: Date,
+        default: Date.now
+    }
     
 })
 
