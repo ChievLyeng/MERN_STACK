@@ -9,15 +9,21 @@ require('dotenv').config()
 // app
 const app = express()
 
+
 //middleware
 app.use(express.json()); // use to parse the jason data from request
 app.use(cors());
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 
 // app.get('/product', (req,res) => {
 //     res.json({mssg: "Welcome to post product page"})
 // })
+
+
+
+
 //route
 app.use('/',ProductRoutes)
 app.use('/',OrderRoutes)

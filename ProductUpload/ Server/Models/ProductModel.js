@@ -15,7 +15,8 @@ const productSchema = mongoose.Schema({
         required: [true,"Product must have price"]
     },
     Image:{
-        type: String
+        data: Buffer,
+        contentType: String,
     },
     Quantity: {
         type: Number,
