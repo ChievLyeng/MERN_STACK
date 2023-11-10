@@ -7,8 +7,8 @@ const OrderProduct = new mongoose.Schema({
     },
     Product:[
         {
-        type: mongoose.Schema.Types.ObjectId,
-        ref : 'Products'
+            type: mongoose.Schema.Types.ObjectId,
+            ref : 'Products'
         }
     ],
     createdAt: {

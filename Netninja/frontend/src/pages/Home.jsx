@@ -7,7 +7,7 @@ import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 
 export const Home = () => {
     //that is local state we change to use the global context
-    // const [workouts,setWorkouts] = useState(null)\
+    // const [workouts,setWorkouts] = useState(null)
 
     const {workouts, dispatch} = useWorkoutsContext()
     const URL = "http://localhost:8000";
